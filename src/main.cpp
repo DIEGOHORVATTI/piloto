@@ -1,17 +1,17 @@
 #include <Arduino.h>
 
 //motor
-const int pulPin = 2;
+const int pulPin = 4;
 const int dirPin = 3;
-const int enPin = 4;
+const int enPin = 2;
 
 int x;
 
-int delayrotacao = 5000;
+int delayrotacao = 1500;
 
-// sensor LDR
-int LED1 = 8;
-int LED2 = 9;
+// LED
+/* int LED1 = 8;
+int LED2 = 9; */
 
 // sensor LDR
 int LDR2 = A2;
@@ -28,10 +28,11 @@ void setup(){
   pinMode(dirPin, OUTPUT);
   pinMode(enPin, OUTPUT);
   digitalWrite(enPin, LOW);
+  
 
   // debag
-  pinMode(LED1, OUTPUT);        
-  pinMode(LED2, OUTPUT);
+  /* pinMode(LED1, OUTPUT);        
+  pinMode(LED2, OUTPUT); */
  
   // porta do arduino LDR
   pinMode(LDR2, INPUT);
@@ -52,23 +53,21 @@ void loop(){
   int valorLDR4 = analogRead(LDR4);
   int valorLDR5 = analogRead(LDR5);
 
-  digitalWrite(LED1, LOW);
-  digitalWrite(LED2, LOW);
+  /* digitalWrite(LED1, LOW);
+  digitalWrite(LED2, LOW); */
 
   // --------debug LDR----------
-  Serial.print("valorLDR_2: ");
+  Serial.print("valorLDR_1: ");
   Serial.println(valorLDR2);
 
-  Serial.print("valorLDR_3: ");
+  Serial.print("valorLDR_2: ");
   Serial.println(valorLDR3);
 
-  Serial.print("valorLDR_4: ");
+  Serial.print("valorLDR_3: ");
   Serial.println(valorLDR4);
 
-  Serial.print("valorLDR_5: ");
+  Serial.print("valorLDR_4: ");
   Serial.println(valorLDR5);
-
-  digitalWrite(dirPin, HIGH);
 
   if (x - 1000)
   {
@@ -77,6 +76,8 @@ void loop(){
     digitalWrite(pulPin, LOW);
     delayMicroseconds(delayrotacao);
   }
+
+  digitalWrite(dirPin, HIGH);
 
   /* while (valorLDR2 || valorLDR3 > 80)
   {
@@ -97,7 +98,7 @@ void loop(){
   while (valorLDR4 || valorLDR5 > 80)
   {
     // motor
-    digitalWrite(dirPin, LOW);
+    digitalWrite(dirPin, HIGH);
     digitalWrite(pulPin, LOW);
     delayMicroseconds(delayrotacao);
 
